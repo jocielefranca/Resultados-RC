@@ -15,6 +15,8 @@
             --primary-green: #002818;
             --light-green: #9BDFB8;
             --accent-green: #4CAF50;
+            --primary-blue: #003366;
+            --light-blue: #a3c6e8;
             --text-dark: #1a1a1a;
             --text-light: #666;
             --white: #ffffff;
@@ -26,6 +28,7 @@
             background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e8 100%);
             min-height: 100vh;
             color: var(--text-dark);
+            padding-bottom: 40px;
         }
 
         .presentation-container {
@@ -49,6 +52,7 @@
         .slide:nth-child(3) { animation-delay: 0.4s; }
         .slide:nth-child(4) { animation-delay: 0.6s; }
         .slide:nth-child(5) { animation-delay: 0.8s; }
+        .slide:nth-child(6) { animation-delay: 1.0s; }
 
         @keyframes slideIn {
             to {
@@ -94,6 +98,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid transparent;
         }
+        
+        .metric-card.blue {
+            background: linear-gradient(135deg, var(--light-blue), #c2d8f0);
+        }
 
         .metric-card:hover {
             transform: translateY(-5px);
@@ -106,6 +114,10 @@
             font-weight: 700;
             color: var(--primary-green);
             margin-bottom: 5px;
+        }
+        
+        .metric-card.blue .metric-value {
+            color: var(--primary-blue);
         }
 
         .metric-label {
@@ -121,12 +133,20 @@
             margin: 25px 0;
             border-left: 5px solid var(--accent-green);
         }
+        
+        .chart-container.blue {
+            border-left: 5px solid var(--primary-blue);
+        }
 
         .chart-title {
             font-size: 1.5rem;
             color: var(--primary-green);
             margin-bottom: 20px;
             font-weight: 600;
+        }
+        
+        .chart-container.blue .chart-title {
+            color: var(--primary-blue);
         }
 
         .bar-chart {
@@ -168,6 +188,10 @@
             justify-content: flex-end;
             padding-right: 15px;
         }
+        
+        .blue-gradient {
+            background: linear-gradient(90deg, #4d94ff, var(--primary-blue));
+        }
 
         .bar-value {
             color: var(--white);
@@ -191,6 +215,10 @@
             padding: 25px;
             border: 2px solid var(--light-green);
         }
+        
+        .year-section.blue {
+            border: 2px solid var(--light-blue);
+        }
 
         .year-title {
             font-size: 1.8rem;
@@ -198,6 +226,10 @@
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
+        }
+        
+        .year-section.blue .year-title {
+            color: var(--primary-blue);
         }
 
         .comparison-bar-item {
@@ -222,6 +254,10 @@
             overflow: hidden;
             position: relative;
         }
+        
+        .comparison-bar-container.blue-bg {
+            background: #e3edf8;
+        }
 
         .comparison-bar-fill {
             height: 100%;
@@ -232,6 +268,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        .blue-fill {
+            background: linear-gradient(90deg, #4d94ff, var(--primary-blue));
         }
 
         .comparison-bar-value {
@@ -249,6 +289,11 @@
             padding: 30px;
             margin: 25px 0;
             border-left: 5px solid var(--primary-green);
+        }
+        
+        .evolution-section.blue {
+            background: linear-gradient(135deg, #e3edf8, #eef5fd);
+            border-left: 5px solid var(--primary-blue);
         }
 
         .trend-positive {
@@ -270,6 +315,10 @@
             position: relative;
             overflow: hidden;
         }
+        
+        .insight-box.blue {
+            background: var(--primary-blue);
+        }
 
         .insight-box::before {
             content: '';
@@ -279,6 +328,10 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--light-green), var(--accent-green));
+        }
+        
+        .insight-box.blue::before {
+            background: linear-gradient(90deg, #4d94ff, #0066cc);
         }
 
         .insight-title {
@@ -301,6 +354,10 @@
             border-radius: 4px;
             transition: width 2s ease-out;
         }
+        
+        .blue-progress {
+            background: #4d94ff;
+        }
 
         .sla-indicator {
             display: inline-block;
@@ -314,6 +371,67 @@
         .sla-good { background: #8bc34a; color: white; }
         .sla-warning { background: #ff9800; color: white; }
         .sla-critical { background: #f44336; color: white; }
+        
+        /* Estilo para a tabela de SDRs */
+        .sdr-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sdr-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .sdr-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .sdr-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .sdr-table tr:nth-child(even) {
+            background-color: #f5f9ff;
+        }
+        
+        .sdr-table tr:hover {
+            background-color: #e3edf8;
+        }
+        
+        .sdr-table td:first-child {
+            font-weight: 500;
+            text-align: left;
+        }
+        
+        .above-target {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        
+        .on-target {
+            background-color: #fff8e1;
+            color: #f57f17;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        
+        .target-cell {
+            background-color: #e3f2fd;
+            font-weight: 600;
+        }
 
         @media (max-width: 768px) {
             .slide {
@@ -347,6 +465,11 @@
 
             .comparison-bar-value {
                 font-size: 0.75rem;
+            }
+            
+            .sdr-table {
+                display: block;
+                overflow-x: auto;
             }
         }
     </style>
@@ -463,7 +586,7 @@
             </div>
         </div>
 
-        <!-- Slide 3: Análise de Qualidade -->
+        <!-- Slide 3: Análise de Qualidade (SLA atualizado) -->
         <div class="slide">
             <div class="slide-header">
                 <h2 class="slide-title">Qualidade do Atendimento</h2>
@@ -478,6 +601,15 @@
                         <div class="bar-container">
                             <div class="bar-fill sla-critical" style="width: 100%; background: #f44336;">
                                 <div class="bar-value">14,44 dias</div>
+                            </div>
+                        </div>
+                        <span class="sla-indicator sla-critical">Crítico</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Dez/24</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 96%; background: #f44336;">
+                                <div class="bar-value">13,82 dias</div>
                             </div>
                         </div>
                         <span class="sla-indicator sla-critical">Crítico</span>
@@ -519,6 +651,112 @@
                     <div class="progress-fill" style="width: 88%;"></div>
                 </div>
                 <p>Taxa de reincidência estável em <strong>18%</strong> mesmo com volume 80% maior</p>
+            </div>
+        </div>
+
+        <!-- Novo Slide: Resultados das SDRs -->
+        <div class="slide">
+            <div class="slide-header" style="background: linear-gradient(135deg, var(--primary-blue), #004d80);">
+                <h2 class="slide-title">Desempenho das SDRs</h2>
+                <p class="slide-subtitle">Conversão de Leads em Vendas - Jan a Abr/25</p>
+            </div>
+            
+            <div class="chart-container blue">
+                <h3 class="chart-title">Taxa de Conversão de Leads</h3>
+                
+                <table class="sdr-table">
+                    <thead>
+                        <tr>
+                            <th>MEMÓRIA DE CÁLCULO</th>
+                            <th>META</th>
+                            <th>JANEIRO</th>
+                            <th>FEVEREIRO</th>
+                            <th>MARÇO</th>
+                            <th>ABRIL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quantidade de leads convertidos em vendas / Número Total de vendas da House</td>
+                            <td class="target-cell">30%</td>
+                            <td class="above-target">33%</td>
+                            <td class="above-target">47%</td>
+                            <td class="above-target">32%</td>
+                            <td class="above-target">36%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Meta</div>
+                        <div class="bar-container">
+                            <div class="bar-fill blue-gradient" style="width: 30%; background: #e0e0e0;">
+                                <div class="bar-value">30%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Janeiro</div>
+                        <div class="bar-container">
+                            <div class="bar-fill blue-gradient" style="width: 33%;">
+                                <div class="bar-value">33%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Fevereiro</div>
+                        <div class="bar-container">
+                            <div class="bar-fill blue-gradient" style="width: 47%;">
+                                <div class="bar-value">47%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Março</div>
+                        <div class="bar-container">
+                            <div class="bar-fill blue-gradient" style="width: 32%;">
+                                <div class="bar-value">32%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Abril</div>
+                        <div class="bar-container">
+                            <div class="bar-fill blue-gradient" style="width: 36%;">
+                                <div class="bar-value">36%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="evolution-section blue">
+                <h3 class="chart-title">Análise de Desempenho</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card blue">
+                        <div class="metric-value trend-positive">37%</div>
+                        <div class="metric-label">Média de Conversão</div>
+                    </div>
+                    <div class="metric-card blue">
+                        <div class="metric-value trend-positive">+7%</div>
+                        <div class="metric-label">Acima da Meta</div>
+                    </div>
+                    <div class="metric-card blue">
+                        <div class="metric-value">47%</div>
+                        <div class="metric-label">Melhor Mês (Fevereiro)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insight-box blue">
+                <h3 class="insight-title">📊 Insights Estratégicos</h3>
+                <p>O time de SDRs superou consistentemente a meta de 30% em todos os meses, com destaque para fevereiro (47%).</p>
+                <p>A média de conversão de 37% demonstra eficiência no processo de vendas e qualificação de leads.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill blue-progress" style="width: 123%;"></div>
+                </div>
+                <p>O desempenho em fevereiro foi 57% acima da meta - análise das estratégias utilizadas pode ajudar a replicar o sucesso.</p>
             </div>
         </div>
 
@@ -660,6 +898,10 @@
                         <div class="metric-value trend-positive">9,5/10</div>
                         <div class="metric-label">Satisfação do Cliente</div>
                     </div>
+                    <div class="metric-card blue">
+                        <div class="metric-value trend-positive">37%</div>
+                        <div class="metric-label">Conversão SDRs</div>
+                    </div>
                 </div>
             </div>
 
@@ -677,6 +919,10 @@
                                 <span style="position: absolute; left: 0;">✓</span>
                                 Otimizar processo de geração de boletos vencidos
                             </li>
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Replicar estratégias de sucesso do time SDR
+                            </li>
                         </ul>
                     </div>
                     
@@ -691,6 +937,10 @@
                                 <span style="position: absolute; left: 0;">✓</span>
                                 Otimizar processos para manter SLA < 2 dias
                             </li>
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Treinamento contínuo para time SDR
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -703,6 +953,7 @@
                 <p>• Reduzir reincidência para 15%</p>
                 <p>• Automatizar 40% das demandas recorrentes</p>
                 <p>• Manter satisfação do cliente acima de 9,5/10</p>
+                <p>• Conversão de SDRs acima de 35%</p>
             </div>
         </div>
     </div>
