@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relacionamento com Cliente - Resultados 2024/2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #002818;
+            --light-green: #9BDFB8;
+            --accent-green: #4CAF50;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 40, 24, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e8 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .slide:nth-child(2) { animation-delay: 0.2s; }
+        .slide:nth-child(3) { animation-delay: 0.4s; }
+        .slide:nth-child(4) { animation-delay: 0.6s; }
+        .slide:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, var(--primary-green), #004d2b);
+            color: var(--white);
+            padding: 30px;
+            margin: -40px -40px 30px -40px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--light-green), #b8e6ca);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow);
+            border-color: var(--accent-green);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .chart-container {
+            background: #f8fcf8;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid var(--accent-green);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            min-width: 200px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 25px;
+            background: #e8f5e8;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
+            border-radius: 12px;
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        .bar-value {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .year-section {
+            background: #f8fcf8;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--light-green);
+        }
+
+        .year-title {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .evolution-section {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .trend-positive {
+            color: #2e7d2e;
+            font-weight: 600;
+        }
+
+        .trend-negative {
+            color: #d32f2f;
+            font-weight: 600;
+        }
+
+        .insight-box {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--light-green), var(--accent-green));
+        }
+
+        .insight-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--light-green);
+            border-radius: 4px;
+            transition: width 2s ease-out;
+        }
+
+        .sla-indicator {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .sla-excellent { background: #4caf50; color: white; }
+        .sla-good { background: #8bc34a; color: white; }
+        .sla-warning { background: #ff9800; color: white; }
+        .sla-critical { background: #f44336; color: white; }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .slide-header {
+                padding: 20px;
+                margin: -20px -20px 20px -20px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .comparison-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">Relacionamento com Cliente</h1>
+                <p class="slide-subtitle">Resultados e Evolução 2024/2025</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">6.750</div>
+                    <div class="metric-label">Total 2024 (12 meses)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3.900</div>
+                    <div class="metric-label">Total 2025 (até maio)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">+38%</div>
+                    <div class="metric-label">Aumento Média Mensal</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,72</div>
+                    <div class="metric-label">Melhor SLA Alcançado</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">9,5/10</div>
+                    <div class="metric-label">Nota de Satisfação</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Evolução Mensal -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Evolução do Desempenho</h2>
+                <p class="slide-subtitle">Análise Mensal - Nov/24 a Mai/25</p>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-title">Volume de Atendimentos por Mês</h3>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Nov/24</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 55%;">
+                                <div class="bar-value">556</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Dez/24</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 48%;">
+                                <div class="bar-value">483</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Jan/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 62%;">
+                                <div class="bar-value">618</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Fev/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 69%;">
+                                <div class="bar-value">688</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Mar/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 74%;">
+                                <div class="bar-value">737</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Mai/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 100%;">
+                                <div class="bar-value">1.002</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="evolution-section">
+                <h3 class="chart-title">Indicadores de Eficiência</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value trend-positive">+80%</div>
+                        <div class="metric-label">Crescimento Mai vs Nov</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value trend-positive">73%</div>
+                        <div class="metric-label">Taxa de Resolução Imediata</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">88%</div>
+                        <div class="metric-label">SLA Médio de Melhoria</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Análise de Qualidade -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Qualidade do Atendimento</h2>
+                <p class="slide-subtitle">SLA e Taxa de Reincidência</p>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Evolução do SLA - Tempo de Resposta</h3>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Nov/24</div>
+                        <div class="bar-container">
+                            <div class="bar-fill sla-critical" style="width: 100%; background: #f44336;">
+                                <div class="bar-value">14,44 dias</div>
+                            </div>
+                        </div>
+                        <span class="sla-indicator sla-critical">Crítico</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Jan/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 72%; background: #ff9800;">
+                                <div class="bar-value">10,44 dias</div>
+                            </div>
+                        </div>
+                        <span class="sla-indicator sla-warning">Melhorando</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Mar/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 41%; background: #8bc34a;">
+                                <div class="bar-value">5,99 dias</div>
+                            </div>
+                        </div>
+                        <span class="sla-indicator sla-good">Bom</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Mai/25</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 12%; background: #4caf50;">
+                                <div class="bar-value">1,72 dias</div>
+                            </div>
+                        </div>
+                        <span class="sla-indicator sla-excellent">Excelente</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3 class="insight-title">🎯 Destaque de Performance</h3>
+                <p>Redução de <strong>88% no tempo de SLA</strong> em 6 meses - de 14,44 para 1,72 dias</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 88%;"></div>
+                </div>
+                <p>Taxa de reincidência estável em <strong>18%</strong> mesmo com volume 80% maior</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Comparativo de Assuntos -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Top Assuntos - Evolução</h2>
+                <p class="slide-subtitle">Comparativo 2024 vs 2025</p>
+            </div>
+
+            <div class="comparison-container">
+                <div class="year-section">
+                    <h3 class="year-title">2024 - Total: 6.750</h3>
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Visita Técnica</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 100%;">
+                                    <div class="bar-value">1.692 (25%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Antecipação/Quitação</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 30%;">
+                                    <div class="bar-value">509 (7,5%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">2ª Via de Boleto</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 29%;">
+                                    <div class="bar-value">497 (7,4%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Extrato Financeiro</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 23%;">
+                                    <div class="bar-value">388 (5,7%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Vistoria/Revisoria</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 20%;">
+                                    <div class="bar-value">335 (5,0%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <h3 class="year-title">2025 - Total: 3.900</h3>
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Visita Técnica</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 100%;">
+                                    <div class="bar-value">618 (15,8%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Parcelas em Atraso</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 70%;">
+                                    <div class="bar-value">433 (11,1%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">2ª Via de Boleto</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 56%;">
+                                    <div class="bar-value">349 (8,9%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Antecipação/Quitação</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 50%;">
+                                    <div class="bar-value">308 (7,9%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Extrato Financeiro</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 46%;">
+                                    <div class="bar-value">287 (7,4%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3 class="insight-title">📊 Insights Estratégicos</h3>
+                <p><strong>Mudança no perfil de demandas:</strong> Crescimento de 45% em "Parcelas em Atraso" indica necessidade de ações preventivas de inadimplência.</p>
+                <p><strong>Oportunidade:</strong> Visita Técnica permanece como principal demanda - potencial para automação de agendamentos.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Conclusões e Próximos Passos -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Conclusões & Estratégias</h2>
+                <p class="slide-subtitle">Desafios Identificados e Ações Recomendadas</p>
+            </div>
+
+            <div class="evolution-section">
+                <h3 class="chart-title">🏆 Principais Conquistas</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value trend-positive">88%</div>
+                        <div class="metric-label">Melhoria no SLA</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value trend-positive">80%</div>
+                        <div class="metric-label">Crescimento em Volume</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">73%</div>
+                        <div class="metric-label">Resolução no Mesmo Dia</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">18%</div>
+                        <div class="metric-label">Taxa de Reincidência</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value trend-positive">9,5/10</div>
+                        <div class="metric-label">Satisfação do Cliente</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">🎯 Ações Estratégicas Recomendadas</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="insight-box">
+                        <h4 class="insight-title">Curto Prazo (0-3 meses)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Implementar automação para agendamento de visitas técnicas
+                            </li>
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Otimizar processo de geração de boletos vencidos
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="insight-box">
+                        <h4 class="insight-title">Médio Prazo (3-6 meses)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Melhorar integração do chatbot para 2ª via
+                            </li>
+                            <li style="margin: 10px 0; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                Otimizar processos para manter SLA < 2 dias
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, var(--primary-green), #004d2b);">
+                <h3 class="insight-title">🚀 Meta 2025</h3>
+                <p><strong>Sustentar o crescimento mantendo excelência operacional:</strong></p>
+                <p>• SLA consistente abaixo de 2 dias</p>
+                <p>• Reduzir reincidência para 15%</p>
+                <p>• Automatizar 40% das demandas recorrentes</p>
+                <p>• Manter satisfação do cliente acima de 9,5/10</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animação dos gráficos de barras
+        window.addEventListener('load', function() {
+            const barFills = document.querySelectorAll('.bar-fill');
+            const progressFills = document.querySelectorAll('.progress-fill');
+            
+            setTimeout(() => {
+                barFills.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+                
+                progressFills.forEach(progress => {
+                    const width = progress.style.width;
+                    progress.style.width = '0%';
+                    setTimeout(() => {
+                        progress.style.width = width;
+                    }, 500);
+                });
+            }, 1000);
+        });
+
+        // Efeito de hover nos cards
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
