@@ -145,13 +145,14 @@
             min-width: 200px;
             font-weight: 500;
             color: var(--text-dark);
+            font-size: 1rem;
         }
 
         .bar-container {
             flex: 1;
-            height: 25px;
+            height: 35px;
             background: #e8f5e8;
-            border-radius: 12px;
+            border-radius: 18px;
             overflow: hidden;
             position: relative;
         }
@@ -159,21 +160,24 @@
         .bar-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
-            border-radius: 12px;
+            border-radius: 18px;
             transition: width 1.5s ease-out;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
         }
 
         .bar-value {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
             color: var(--white);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
 
+        /* Melhorias específicas para o gráfico de comparação */
         .comparison-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -194,6 +198,49 @@
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
+        }
+
+        .comparison-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .comparison-bar-label {
+            min-width: 140px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .comparison-bar-container {
+            flex: 1;
+            height: 30px;
+            background: #e8f5e8;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .comparison-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
+            border-radius: 15px;
+            transition: width 1.5s ease-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-bar-value {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            white-space: nowrap;
         }
 
         .evolution-section {
@@ -291,6 +338,15 @@
             .metrics-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
+            }
+
+            .comparison-bar-label {
+                min-width: 120px;
+                font-size: 0.8rem;
+            }
+
+            .comparison-bar-value {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -477,43 +533,43 @@
                 <div class="year-section">
                     <h3 class="year-title">2024 - Total: 6.750</h3>
                     <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label">Visita Técnica</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 100%;">
-                                    <div class="bar-value">1.692 (25%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Visita Técnica</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 100%;">
+                                    <div class="comparison-bar-value">1.692 (25%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Antecipação/Quitação</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 30%;">
-                                    <div class="bar-value">509 (7,5%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Antecipação/Quitação</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 30%;">
+                                    <div class="comparison-bar-value">509 (7,5%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">2ª Via de Boleto</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 29%;">
-                                    <div class="bar-value">497 (7,4%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">2ª Via de Boleto</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 29%;">
+                                    <div class="comparison-bar-value">497 (7,4%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Extrato Financeiro</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 23%;">
-                                    <div class="bar-value">388 (5,7%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Extrato Financeiro</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 23%;">
+                                    <div class="comparison-bar-value">388 (5,7%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Vistoria/Revisoria</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 20%;">
-                                    <div class="bar-value">335 (5,0%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Vistoria/Revisoria</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 20%;">
+                                    <div class="comparison-bar-value">335 (5,0%)</div>
                                 </div>
                             </div>
                         </div>
@@ -523,43 +579,43 @@
                 <div class="year-section">
                     <h3 class="year-title">2025 - Total: 3.900</h3>
                     <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label">Visita Técnica</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 100%;">
-                                    <div class="bar-value">618 (15,8%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Visita Técnica</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 100%;">
+                                    <div class="comparison-bar-value">618 (15,8%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Parcelas em Atraso</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 70%;">
-                                    <div class="bar-value">433 (11,1%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Parcelas em Atraso</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 70%;">
+                                    <div class="comparison-bar-value">433 (11,1%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">2ª Via de Boleto</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 56%;">
-                                    <div class="bar-value">349 (8,9%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">2ª Via de Boleto</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 56%;">
+                                    <div class="comparison-bar-value">349 (8,9%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Antecipação/Quitação</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 50%;">
-                                    <div class="bar-value">308 (7,9%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Antecipação/Quitação</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 50%;">
+                                    <div class="comparison-bar-value">308 (7,9%)</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bar-item">
-                            <div class="bar-label">Extrato Financeiro</div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: 46%;">
-                                    <div class="bar-value">287 (7,4%)</div>
+                        <div class="comparison-bar-item">
+                            <div class="comparison-bar-label">Extrato Financeiro</div>
+                            <div class="comparison-bar-container">
+                                <div class="comparison-bar-fill" style="width: 46%;">
+                                    <div class="comparison-bar-value">287 (7,4%)</div>
                                 </div>
                             </div>
                         </div>
@@ -654,7 +710,7 @@
     <script>
         // Animação dos gráficos de barras
         window.addEventListener('load', function() {
-            const barFills = document.querySelectorAll('.bar-fill');
+            const barFills = document.querySelectorAll('.bar-fill, .comparison-bar-fill');
             const progressFills = document.querySelectorAll('.progress-fill');
             
             setTimeout(() => {
