@@ -258,6 +258,7 @@
             font-weight: 700;
             color: var(--primary-green);
             margin-bottom: 5px;
+            display: block;
         }
 
         .stat-label {
@@ -518,18 +519,23 @@
             });
         });
 
-        // Contador animado para valores
-        function animateCounter(element, target, duration = 2000) {
+        // Contador animado para valores numéricos
+        function animateCounter(element, target, duration = 2000, isDecimal = false, suffix = '') {
             let start = 0;
-            const increment = target / (duration / 16);
+            const targetNum = parseFloat(target.toString().replace(/[^\d.-]/g, ''));
+            const increment = targetNum / (duration / 16);
             
             const timer = setInterval(() => {
                 start += increment;
-                if (start >= target) {
-                    element.textContent = target;
+                if (start >= targetNum) {
+                    element.textContent = target + suffix;
                     clearInterval(timer);
                 } else {
-                    element.textContent = Math.floor(start);
+                    if (isDecimal) {
+                        element.textContent = start.toFixed(2) + suffix;
+                    } else {
+                        element.textContent = Math.floor(start) + suffix;
+                    }
                 }
             }, 16);
         }
@@ -541,10 +547,38 @@
                     const numero = entry.target.querySelector('.stat-numero');
                     if (numero && !numero.classList.contains('animated')) {
                         numero.classList.add('animated');
-                        const target = parseInt(numero.textContent.replace(/[^0-9]/g, ''));
-                        if (!isNaN(target)) {
-                            numero.textContent = '0';
-                            animateCounter(numero, target);
+                        const originalText = numero.textContent;
+                        
+                        // Detectar tipo de dado e animar adequadamente
+                        if (originalText.includes('%')) {
+                            const target = parseInt(originalText.replace(/[^0-9]/g, ''));
+                            numero.textContent = '0%';
+                            animateCounter(numero, target, 2000, false, '%');
+                        } else if (originalText.includes(',')) {
+                            // Para 1,72 (número decimal)
+                            const target = parseFloat(originalText.replace(',', '.'));
+                            numero.textContent = '0,00';
+                            const timer = setInterval(() => {
+                                const current = parseFloat(numero.textContent.replace(',', '.'));
+                                const increment = target / 100;
+                                if (current >= target) {
+                                    numero.textContent = '1,72';
+                                    clearInterval(timer);
+                                } else {
+                                    numero.textContent = (current + increment).toFixed(2).replace('.', ',');
+                                }
+                            }, 20);
+                        } else if (originalText.includes('+')) {
+                            // Para +38%
+                            numero.textContent = '+0%';
+                            animateCounter(numero, '+38', 2000, false, '%');
+                        } else {
+                            // Para números inteiros
+                            const target = parseInt(originalText.replace(/[^0-9]/g, ''));
+                            if (!isNaN(target)) {
+                                numero.textContent = '0';
+                                animateCounter(numero, target, 2000);
+                            }
                         }
                     }
                 }
